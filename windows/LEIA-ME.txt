@@ -1,0 +1,80 @@
+RELOGIO VERDE 2.1 - PACOTE COMPLETO PARA WINDOWS 11
+Recriacao independente para Caco. Nao e o software original da serie.
+
+INSTALACAO OU ATUALIZACAO
+1. Baixe este novo ZIP no computador.
+2. Clique com o botao direito > Extrair tudo. NAO execute dentro do ZIP.
+3. Abra a pasta extraida Relogio-Verde.
+4. Feche a janela antiga de configuracoes de protecao de tela, se aberta.
+5. Execute Instalar.cmd com dois cliques, sem usar outro usuario/admin.
+6. Aguarde. A janela informa cada etapa e permanece aberta ao terminar.
+7. Se aparecer INSTALADO, abra Testar.cmd para ver o relogio imediatamente.
+8. Mova o mouse ou pressione uma tecla para sair.
+9. Abra Configuracoes.cmd para conferir RelogioVerde e o tempo de espera.
+
+O instalador seleciona e ativa o protetor no perfil do usuario atual.
+Preserva o tempo de espera positivo existente; se ausente/invalido, usa
+5 minutos. A opcao de exigir senha ao voltar nao e alterada.
+A versao anterior e substituida na mesma pasta. Nao precisa desinstalar.
+
+SE NAO FUNCIONAR
+O log fica em: %LOCALAPPDATA%\RelogioVerde\instalacao.log
+Copie esse caminho para a barra do Explorador de Arquivos para abrir.
+Envie o log completo ou uma foto legivel da mensagem de falha.
+Se o programa iniciar e falhar, consulte tambem erro-execucao.txt na
+mesma pasta. Esse arquivo so existe se ocorreu uma excecao no aplicativo.
+Nao e preciso desativar antivirus ou protecoes do Windows.
+Politicas corporativas podem impedir a instalacao; elas nao sao alteradas.
+Se o instalador for bloqueado antes mesmo de iniciar, envie a mensagem
+exata mostrada pelo Windows.
+
+O QUE MUDOU NA VERSAO 2.1
+- Nao depende apenas da chamada InstallScreenSaver para a selecao.
+- Compila em pasta temporaria e testa o desenho nativo antes de instalar.
+- Confere arquivo gerado e selecao no registro do usuario.
+- Ativa usando a API de configuracoes do Windows e notifica o sistema.
+- Inclui teste direto, configuracoes, log persistente e erro de execucao.
+- Desinstalador restaura a selecao anterior quando disponivel e valida.
+
+VISUAL ATUALIZADO
+Ponto verde fixo no centro; dois circulos concentricos segmentados.
+Interno: 24 horas do dia. 06h = 25%, 12h = 50%, 18h = 75%.
+Externo: 60 minutos. 15 min = 25%, 30 min = 50%, 45 min = 75%.
+Comecam no alto e avancam no sentido horario, com preenchimento parcial
+do segmento da borda. Atualizacao a cada 100 ms.
+Interno reinicia a 00:00; externo reinicia a cada hora cheia.
+Digital HH:MM:SS em 24 horas, abaixo do ponto e dentro dos circulos.
+Acompanha a hora local, inclusive alteracoes de fuso e ajustes manuais.
+Funciona em todos os monitores. Sai com teclado, clique ou movimento do
+mouse, com tolerancia inicial de 1,5 segundo.
+
+PREVIA SEM INSTALAR
+Abra Previa.html no navegador. Nao usa internet. A previa nao substitui
+o protetor nativo acionado pela inatividade. Previa.png mostra o visual.
+
+REQUISITOS E TRANSPARENCIA
+O ZIP inclui todo o codigo e os scripts; o arquivo executavel .scr e
+COMPILADO NO SEU WINDOWS pelo instalador. Nao inclui binario pre-compilado.
+Usa Windows PowerShell 5.1 e csc.exe do .NET Framework do Windows.
+Se esses componentes faltarem, o erro fica no log. Nao baixa dependencias.
+Instalar.cmd usa politica de execucao temporaria apenas nesse processo;
+nao altera a politica permanentemente.
+Nao acessa a internet, nao coleta dados nem altera configuracoes de senha.
+Destino: %LOCALAPPDATA%\RelogioVerde
+
+VALIDACAO
+Desenho e calculos da previa executados em Canvas no Linux, incluindo
+progresso de 24h/60min e viradas de hora/dia. ZIP verificado.
+O instalador e o protetor nativo NAO foram executados em Windows aqui.
+O novo autoteste local verifica compilacao e desenho, mas nao comprova
+ativacao por inatividade, visual em multiplos monitores ou politicas.
+A causa da falha relatada na versao anterior ainda depende do log.
+
+DESINSTALAR
+Execute Desinstalar.cmd na pasta extraida. Apenas arquivos deste programa
+sao removidos. Logs permanecem para diagnostico. Uma selecao anterior
+valida e restaurada quando registrada pelo instalador 2.1.
+
+LICENCA
+Codigo original: MIT. Pode usar, modificar e compartilhar, sem garantia.
+Nao inclui imagens ou arquivos extraidos da serie.
