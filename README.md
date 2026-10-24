@@ -107,24 +107,6 @@ O aplicativo não usa rede, não tem anúncios nem coleta dados. O script usa um
 
 **Desinstalar:** execute `Desinstalar.cmd`. A seleção anterior é restaurada quando houver um registro válido feito pelo instalador 2.1. Os logs de diagnóstico são preservados.
 
-## Se não aparecer ou não abrir
-
-Abra o Explorador de Arquivos e cole:
-
-```text
-%LOCALAPPDATA%\RelogioVerde
-```
-
-| Arquivo | Para que serve |
-| --- | --- |
-| `instalacao.log` | Etapas da instalação e erros do compilador |
-| `erro-execucao.txt` | Detalhes de uma exceção no aplicativo, se houver |
-| `Teste-nativo.png` | Imagem gerada pelo teste local de desenho |
-
-Confira se o ZIP foi totalmente extraído e tente `Testar.cmd`. Se o teste direto funcionar, mas a ativação automática não, confira o tempo de espera, a suspensão da tela e eventuais políticas do Windows.
-
-Não desative o antivírus para instalar. Se o Windows bloquear a execução, registre a mensagem exata. Ao [abrir uma issue](https://github.com/maiconaalmeida/relogio-verde/issues), informe a versão do Windows, a etapa que falhou e o erro. Remova nomes de usuário, caminhos pessoais ou outros dados privados dos logs antes de publicá-los.
-
 ## Estrutura do projeto
 
 | Caminho | Conteúdo |
@@ -152,6 +134,6 @@ A exibição da versão 2.1 em um computador Windows foi confirmada pelo autor d
 
 ## Créditos e licença
 
-Projeto idealizado por **Maicon A Almeida**, com desenvolvimento assistido por IA e ajustes a partir do teste no Windows.
+Projeto idealizado por **Maicon A Almeida**, com ajustes a partir de testes no Windows.
 
 Código disponibilizado sob a [licença MIT](LICENSE). Você pode usar, estudar, modificar e compartilhar. Os nomes e marcas citados como referência não estão incluídos nessa licença.
