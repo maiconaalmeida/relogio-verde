@@ -1,0 +1,44 @@
+name: Validar relógio
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validar:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verificar lógica HTML
+        run: node tests/clock.test.cjs
+      - name: Validar PowerShell e compilar
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Get-ChildItem windows -Filter *.ps1 | ForEach-Object {
+            $tokens = $null
+            $parseErrors = $null
+            [void][System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$tokens, [ref]$parseErrors)
+            if ($parseErrors.Count -gt 0) { throw ($parseErrors | Out-String) }
+          }
+          New-Item -ItemType Directory -Path build -Force | Out-Null
+          $csc = Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319\csc.exe'
+          & $csc /nologo /target:winexe /optimize+ /platform:anycpu /out:build\RelogioVerde.exe /reference:System.Windows.Forms.dll /reference:System.Drawing.dll windows\RelogioVerde.cs
+          if ($LASTEXITCODE -ne 0) { throw 'Compilacao falhou' }
+          $image = Join-Path $PWD 'build\Teste-nativo.png'
+          $p = Start-Process -FilePath (Join-Path $PWD 'build\RelogioVerde.exe') -ArgumentList ('/render "' + $image + '"') -PassThru
+          if (!$p.WaitForExit(20000)) { $p.Kill(); throw 'Timeout no desenho' }
+          if ($p.ExitCode -ne 0 -or !(Test-Path $image)) { throw 'Falha no desenho nativo' }
+          Add-Type -AssemblyName System.Drawing
+          $bitmap = [Drawing.Bitmap]::FromFile($image)
+          try {
+            if ($bitmap.Width -ne 1280 -or $bitmap.Height -ne 800) { throw 'Dimensoes incorretas' }
+          } finally { $bitmap.Dispose() }
+          Copy-Item build\RelogioVerde.exe build\RelogioVerde.scr
+      - uses: actions/upload-artifact@v4
+        with:
+          name: relogio-verde-build
+          path: |
+            build/RelogioVerde.scr
+            build/Teste-nativo.png
